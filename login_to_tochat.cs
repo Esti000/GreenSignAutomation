@@ -17,7 +17,11 @@ namespace Data_From_Html
         public static string GetRepresentativesTableHtml(string username, string password)
         {
             var options = new ChromeOptions();
-            options.AddArgument("--headless"); // אם לא רוצים לפתוח דפדפן
+            options.AddArguments("--headless"); // הפעלה בלי GUI
+            options.AddArguments("--no-sandbox"); // מאפשר להריץ בסביבה מוגבלת
+            options.AddArguments("--disable-dev-shm-usage"); // לשרתים עם זיכרון משותף קטן
+            options.AddArguments("--disable-gpu"); // אם יש בעיות בשרתים מסוימים
+            options.AddArguments("--remote-debugging-port=9222"); // לפעמים עוזר לפתוח port
 
             using (var driver = new ChromeDriver(options))
             {
