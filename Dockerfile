@@ -1,30 +1,28 @@
-# ===========================
-# שלב 1: Build
-# ===========================
+# Use the official .NET 8 SDK image to build the project
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+
+# Set working directory inside the container
 WORKDIR /app
 
-# העתק את קובץ ה-sln וכל קבצי csproj
-COPY *.sln ./
-COPY **/*.csproj ./
-
-# התקן את התלויות
-RUN dotnet restore
-
-# העתק את כל הקוד
+# Copy everything to the container
 COPY . ./
 
-# Build ו-Publish לתיקייה 'out'
-RUN dotnet publish -c Release -o out
+# Restore NuGet packages
+RUN dotnet restore
 
-# ===========================
-# שלב 2: Runtime
-# ===========================
+# Build the project in Release mode
+RUN dotnet build -c Release --no-restore
+
+# Publish the project to a folder
+RUN dotnet publish -c Release --no-build -o out
+
+# Use the official .NET 8 runtime image for running
 FROM mcr.microsoft.com/dotnet/runtime:8.0 AS runtime
+
 WORKDIR /app
 
-# העתק את הפלט מה-build
+# Copy the published files from the build stage
 COPY --from=build /app/out ./
 
-# הפעלת האפליקציה
-ENTRYPOINT ["dotnet", "GreenSignAutomation.dll"]
+# Set the entry point
+ENTRYPOINT ["dotnet", "Data_From_Html.dll"]
