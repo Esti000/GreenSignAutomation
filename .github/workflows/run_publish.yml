@@ -2,9 +2,8 @@
 
 on:
   workflow_dispatch:   # מאפשר הפעלה ידנית
-  schedule:            # מאפשר ריצה לפי לוח זמנים
-    - cron: '38 16 * * *'  # כל יום ב‑18:15 ישראל (UTC+2)
-
+  schedule:            # ריצה אוטומטית
+    - cron: '0 17 * * *'  # 17:00 UTC = 19:00 לפי ישראל
 jobs:
   run_publish:
     runs-on: windows-latest
