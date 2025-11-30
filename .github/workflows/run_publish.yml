@@ -3,7 +3,7 @@
 on:
   workflow_dispatch:   # מאפשר הפעלה ידנית
   schedule:            # מאפשר ריצה לפי לוח זמנים
-    - cron: '20 16 * * *'  # כל יום ב‑18:15 ישראל (UTC+2)
+    - cron: '27 16 * * *'  # כל יום ב‑18:15 ישראל (UTC+2)
 
 jobs:
   run_publish:
