@@ -1,0 +1,14 @@
+﻿name: Run Publish
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run_publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Run Publish EXE
+        run: ./publish/Data_From_Html.exe
