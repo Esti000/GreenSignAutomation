@@ -2,6 +2,8 @@
 
 on:
   workflow_dispatch:
+schedule:
+    - cron: '15 16 * * *'  # כל יום ב‑18:15 ישראל (UTC+2)
 
 jobs:
   run_publish:
