@@ -5,10 +5,10 @@ on:
 
 jobs:
   run_publish:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest   # <-- שונה מ-ubuntu-latest ל-windows-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Run Publish EXE
-        run: ./publish/Data_From_Html.exe
+        run: .\publish\Data_From_Html.exe   # <-- בסינטקס Windows
